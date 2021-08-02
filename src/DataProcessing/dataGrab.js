@@ -32,7 +32,7 @@ function cleanData(data) {
     periods.push(data.body.properties.periods[i]);
   }
 
-  console.log(periods);  //clean
+  //console.log(periods);  //clean
   return periods;
 }
 

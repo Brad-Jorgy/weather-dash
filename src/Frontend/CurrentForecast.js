@@ -4,10 +4,10 @@ import "./App.css";
 import { Grid } from "./Grid";
 import { Row } from "./Grid";
 import { Col } from "./Grid";
-import { dataGrab } from "../DataProcessing/dataGrab";
+import { dataGrab } from "../DataProcessing/dataGrab"; 
 import TransBack from "./transpartComp";
 
-function CurrentForecast() {
+function CurrentForecast() { 
   const [currentForecast, setCurForcast] = useState({
     timeOfDay: "",
     temp: 0,
@@ -16,6 +16,7 @@ function CurrentForecast() {
     imageUrl: "",
     shortForecast: "",
   });
+
   const [ran, setRan] = useState(1);
 
   useEffect(async () => {
@@ -30,7 +31,7 @@ function CurrentForecast() {
       shortForecast: periods[0].shortForecast,
     };
   
-    console.log(currentForecast); //clean
+    //console.log(currentForecast); //clean
 
     setCurForcast(currentForecast);
     setRan(1);
