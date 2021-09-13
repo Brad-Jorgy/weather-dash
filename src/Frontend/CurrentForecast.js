@@ -30,8 +30,6 @@ function CurrentForecast() {
       imageUrl: periods[0].icon,
       shortForecast: periods[0].shortForecast,
     };
-  
-    //console.log(currentForecast); //clean
 
     setCurForcast(currentForecast);
     setRan(1);
