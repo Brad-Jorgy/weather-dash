@@ -8,7 +8,7 @@ import { dataGrab } from "../DataProcessing/dataGrab";
 import TransBack from "./transpartComp";
 
 
-function Temp() { 
+function RidingForecast() { 
   const [rideStats, setRideStats] = useState({
     bestTimeOfDay: "",
     high: 0,
@@ -16,18 +16,47 @@ function Temp() {
     timeIfWeather: "",
     imageUrl: "",
   }); 
+
   const [ran, setRan] = useState(1);
 
   useEffect(async () => {
     const periods = await dataGrab();
 
-    var RideStats = {
-      //bestTimeOfDay: periods[] 
-      
-    };
+    var forecast = [];
+    var i = 1;
+     
+    if(periods[i].isDaytime == true) {
+       forecast = periods[i];
+       console.log(forecast);
+    } else {
+      i++;
+    }
+    //forecastAlgo(periods);
+    console.log(periods);
+    console.log(forecast);
 
     
-    //setRideStats(rideStats);
+
+    // function forecastAlgo(periods) {
+    //   var i = 1;
+     
+    //   if(periods[i].isDaytime == true) {
+    //      forecast = periods[i];
+    //      console.log(forecast);
+    //   } else {
+    //     i++;
+    //   }
+    // }
+
+    var rideStats = {
+      // bestTimeOfDay: periods[] 
+      high: forecast.temperature
+      // low: 
+      // adverse: 
+      // imageUrl: 
+    };
+
+    setRideStats(rideStats);
     setRan(1);
   }, [ran]);
   
@@ -37,7 +66,7 @@ function Temp() {
             <Row>   
               <Col size={1}>
                 <div className="TempStyles">Best time to ride: {}</div>
-                <div className="TempStyles">Time of High: {}</div>
+                <div className="TempStyles">Time of High: {rideStats.high}</div>
                 <div className="TempStyles">Time of Low: {}</div>
                 <div className="TempStyles">Time of Adverse Weather: {}</div>
                 <button className="saveDataButton">  Save Forecast  </button>
@@ -60,4 +89,4 @@ function Temp() {
       );
 }
 
-export default Temp;
+export default RidingForecast;

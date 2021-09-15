@@ -1,6 +1,6 @@
 import React from "react";
 import "./App.css";
-import Temp  from "./Temp";
+import RidingForecast  from "./RidingForecast";
 import CurrentForecast from "./CurrentForecast";
 
 
@@ -8,7 +8,7 @@ function App() {
   return (
     <div className="App">
       <CurrentForecast />
-      <Temp />
+      <RidingForecast />
     </div>
   );
 }

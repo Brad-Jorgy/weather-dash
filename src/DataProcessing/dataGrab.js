@@ -26,13 +26,10 @@ function cleanData(data) {
   var date = new Date();
   let periods = [];
 
-  console.log(date); //clean
-
   for (var i = 0; i <= 14; i++) {
     periods.push(data.body.properties.periods[i]);
   }
 
-  //console.log(periods);  //clean
   return periods;
 }
 
