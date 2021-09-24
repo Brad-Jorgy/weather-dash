@@ -40,7 +40,7 @@ function CurrentForecast() {
       <Grid>
         <Row>
           <Col size={1}>
-            <div className="TempStyles">{currentForecast.timeOfDay}</div>
+            <div className="headings">{currentForecast.timeOfDay}</div>
             <div className="TempStyles">Temp: {currentForecast.temp}</div>
             <div className="TempStyles">Precipitation: {currentForecast.shortForecast}</div>
             <div className="TempStyles">

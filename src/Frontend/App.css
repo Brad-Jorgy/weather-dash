@@ -37,3 +37,12 @@
   padding-right: 30px;
   background-color:cyan;
 }
+
+.headings {
+  font-size: xx-large;
+  font-weight: 10000;
+  color: rgb(18, 21, 228);
+  padding: 20px,20px, 20px, 20px;
+  margin: 20px;
+  text-decoration: underline;
+}

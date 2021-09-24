@@ -1,4 +1,4 @@
-import React, { useEffect, useState }  from "react";
+import React, { useEffect, useState } from "react";
 import "./Grid";
 import "./App.css";
 import { Grid } from "./Grid";
@@ -7,15 +7,14 @@ import { Col } from "./Grid";
 import { dataGrab } from "../DataProcessing/dataGrab";
 import TransBack from "./transpartComp";
 
-
-function RidingForecast() { 
+function RidingForecast() {
   const [rideStats, setRideStats] = useState({
     bestTimeOfDay: "",
     high: 0,
     low: 0,
     timeIfWeather: "",
     imageUrl: "",
-  }); 
+  });
 
   const [ran, setRan] = useState(1);
 
@@ -23,70 +22,79 @@ function RidingForecast() {
     const periods = await dataGrab();
 
     var forecast = [];
-    var i = 1;
-     
-    if(periods[i].isDaytime == true) {
-       forecast = periods[i];
-       console.log(forecast);
-    } else {
-      i++;
+    var BradsSuggestions = []; 
+
+    forecastAlgo(periods);
+    //console.log(periods);  //clean
+    bradsSuggestion(forecast);
+
+    function forecastAlgo(periods) {
+      var i = 1;
+      while (i < 5) {
+        if (periods[i].isDaytime == true) {
+          forecast = periods[i];
+          
+          //console.log(forecast);  //clean
+          break;
+        }
+        i++;
+      }
     }
-    //forecastAlgo(periods);
-    console.log(periods);
-    console.log(forecast);
 
-    
-
-    // function forecastAlgo(periods) {
-    //   var i = 1;
-     
-    //   if(periods[i].isDaytime == true) {
-    //      forecast = periods[i];
-    //      console.log(forecast);
-    //   } else {
-    //     i++;
-    //   }
-    // }
+    function bradsSuggestion(forecast) {
+      if (forecast.temperature >= 75){
+        BradsSuggestions['Time'] = "Morning or Evening";
+      } else if (forecast.temperature <= 74 ||  forecast.temperature >=45){
+        BradsSuggestions['Time'] = "Midday";
+      } else if (forecast.temperature <= 45){
+        BradsSuggestions['Time'] = "Midday, Dress Warm";
+      }  
+    }
 
     var rideStats = {
-      // bestTimeOfDay: periods[] 
-      high: forecast.temperature
-      // low: 
-      // adverse: 
-      // imageUrl: 
+      day: forecast.name,
+      high: forecast.temperature,
+      imageUrl: forecast.icon,
+      shortForecast: forecast.shortForecast,
+      windDirection: forecast.windDirection,
+      windSpeed: forecast.windSpeed,
+      bestTime: BradsSuggestions.Time
     };
 
     setRideStats(rideStats);
     setRan(1);
   }, [ran]);
-  
-      return (
-        <TransBack>
-          <Grid>
-            <Row>   
-              <Col size={1}>
-                <div className="TempStyles">Best time to ride: {}</div>
-                <div className="TempStyles">Time of High: {rideStats.high}</div>
-                <div className="TempStyles">Time of Low: {}</div>
-                <div className="TempStyles">Time of Adverse Weather: {}</div>
-                <button className="saveDataButton">  Save Forecast  </button>
-              </Col>
-              <Col size={1} className="centerJust">
-                <div className="weatherIcon">
-                <img
-                  src="https://api.weather.gov/icons/land/night/bkn/snow,30?size=medium"  
-                  alt="sun"
-                  width="130px"
-                  height="130px"
-                  margin="auto"
-                  display="block"
-                ></img>
-              </div>
-            </Col>
-            </Row>
-          </Grid>
-        </TransBack>
-      );
+
+  return (
+    <TransBack>
+      <Grid>
+        <Row>
+          <Col size={1}>
+            <div className="headings">{rideStats.day}</div>
+            <div className="TempStyles">High: {rideStats.high}</div>
+            <div className="TempStyles">{rideStats.shortForecast}</div>
+            <div className="TempStyles">Wind Direction: {rideStats.windDirection}</div>
+            <div className="TempStyles">Wind Speed: {rideStats.windSpeed}</div>
+            <div className="headings">Brad's Suggestion</div>
+            <div className="TempStyles">Best Time to Ride: {rideStats.bestTime}</div>
+            <button className="saveDataButton"> Save Forecast </button>
+          </Col>
+          <Col size={1} className="centerJust">
+            <div className="weatherIcon">
+              <img
+                src={rideStats.imageUrl}
+                alt="sun"
+                width="130px"
+                height="130px"
+                margin="auto"
+                display="block"
+              ></img>
+            </div>
+          </Col>
+        </Row>
+      </Grid>
+    </TransBack>
+  );
 }
 
 export default RidingForecast;
