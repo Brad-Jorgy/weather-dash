@@ -6,6 +6,15 @@ import { Row } from "./Grid";
 import { Col } from "./Grid";
 import { dataGrab } from "../DataProcessing/dataGrab";
 import TransBack from "./transpartComp";
+import { API, graphqlOperation } from 'aws-amplify';
+import { createSaveForecast} from './graphql/mutations';
+
+// todo = { name: "My first todo", description: "Hello world!" };
+
+async function SubmitForecast(rideStats) {
+  console.log('Yes');
+  const yes = await API.graphql(graphqlOperation(createSaveForecast, {input: rideStats}));
+}
 
 function RidingForecast() {
   const [rideStats, setRideStats] = useState({
@@ -51,6 +60,8 @@ function RidingForecast() {
       }  
     }
 
+    
+
     var rideStats = {
       day: forecast.name,
       high: forecast.temperature,
@@ -77,7 +88,7 @@ function RidingForecast() {
             <div className="TempStyles">Wind Speed: {rideStats.windSpeed}</div>
             <div className="headings">Brad's Suggestion</div>
             <div className="TempStyles">Best Time to Ride: {rideStats.bestTime}</div>
-            <button className="saveDataButton"> Save Forecast </button>
+            <button onClick={SubmitForecast(rideStats)} className="saveDataButton"> Save Forecast </button>
           </Col>
           <Col size={1} className="centerJust">
             <div className="weatherIcon">

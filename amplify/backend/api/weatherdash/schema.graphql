@@ -1,0 +1,8 @@
+type SaveForecast @model {
+  id: ID!
+  high: Int!
+  shortForecast: String!
+  windDirection: String!
+  windSpeed: String!
+  bestTimeToRide: String
+}
