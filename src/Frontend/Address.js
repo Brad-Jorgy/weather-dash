@@ -40,16 +40,49 @@ function Address() {
       <Grid>
         <Row>
           <Col size={1}>
-            <div className="TempStyles">{currentForecast.timeOfDay}</div>
-            <div className="TempStyles">Temp: {currentForecast.temp}</div>
-            <div className="TempStyles">Precipitation: {currentForecast.shortForecast}</div>
             <div className="TempStyles">
-              Wind Direction: {currentForecast.windDirect}
+              <input>
+                type="Street"
+                value={inputValue}
+                onChange={handleChange}
+              </input>
             </div>
             <div className="TempStyles">
-              Wind Speed: {currentForecast.windSpeed}
+                     <input>
+                type="City"
+                value={inputValue}
+                onChange={handleChange}
+              </input>
             </div>
-            
+            <div className="TempStyles">
+              <input>
+                type="County"
+                value={inputValue}
+                onChange={handleChange}
+              </input>
+            </div>
+            <div className="TempStyles">
+              <input>
+                type="State"
+                value={inputValue}
+                onChange={handleChange}
+              </input>
+            </div>
+            <div className="TempStyles">
+              <input>
+                type="Country"
+                value={inputValue}
+                onChange={handleChange}
+              </input>
+            </div>
+                      <div className="TempStyles">
+              <input>
+                type="Zip"
+                value={inputValue}
+                onChange={handleChange}
+              </input>
+            </div>
+
           </Col>
           <Col size={1} className="centerJust">
             <div className="weatherIcon">
