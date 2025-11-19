@@ -8,7 +8,7 @@ import { dataGrab } from "../DataProcessing/dataGrab";
 import TransBack from "./transpartComp";
 
 function Address() { 
-  const [addressInput, setCurForcast] = useState({
+  const [addressInput, setAddressInput] = useState({
     street: "",
     city: "",
     county: "",
@@ -20,7 +20,6 @@ function Address() {
   const [ran, setRan] = useState(1);
 
   useEffect(async () => {
-    const periods = await dataGrab();
 
     var addressInput = {
     street: "",
@@ -43,42 +42,42 @@ function Address() {
             <div className="TempStyles">
               <input>
                 type="Street"
-                value={inputValue}
+                value={addressInput.street}
                 onChange={handleChange}
               </input>
             </div>
             <div className="TempStyles">
                      <input>
                 type="City"
-                value={inputValue}
+                value={addressInput.city}
                 onChange={handleChange}
               </input>
             </div>
             <div className="TempStyles">
               <input>
                 type="County"
-                value={inputValue}
+                value={addressInput.county}
                 onChange={handleChange}
               </input>
             </div>
             <div className="TempStyles">
               <input>
                 type="State"
-                value={inputValue}
+                value={addressInput.state}
                 onChange={handleChange}
               </input>
             </div>
             <div className="TempStyles">
               <input>
                 type="Country"
-                value={inputValue}
+                value={addressInput.country}
                 onChange={handleChange}
               </input>
             </div>
-                      <div className="TempStyles">
+            <div className="TempStyles">
               <input>
                 type="Zip"
-                value={inputValue}
+                value={addressInput.zip}
                 onChange={handleChange}
               </input>
             </div>
